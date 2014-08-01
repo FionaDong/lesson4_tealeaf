@@ -147,9 +147,6 @@ get '/new_game' do
 end
 
 get '/set_player_name' do
-  # if session[:player_name] && session[:player_name].length == 0
-  #   @message = "Please tell me your name ~"
-  # end
   erb :set_player_name
 end
 
