@@ -1,0 +1,14 @@
+<h4>Make a bet for this round!</h4><br/> 
+
+<form action="/bet_done" method="post">
+  <%=session[:player_name]%> has $<%=session[:total_amount]%>.
+  <br/>
+  <input type="text" name="bet" autofocus/>
+  <br/>
+  <br/>
+  <input type="submit" value="Make Bet" class="btn"/>
+</form>
+
+  <% if @message %>
+    <strong class='alert alert-block'><%=@message%></strong>
+  <% end %>

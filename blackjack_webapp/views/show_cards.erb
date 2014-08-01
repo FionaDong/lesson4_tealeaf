@@ -1,0 +1,44 @@
+<!-- <script type="text/javascript" src="hidden_btm.js"></script> -->
+<div id='game'>
+<p>
+  <h4>Welcome,<%=session[:player_name]%>, you bet <%=session[:bet]%> for this round and you have <%=session[:total_amount]%> left. </h4>
+  <div class='well' id='player_area'>
+    <strong>Your Cards are:</strong><br/>
+    <% session[:player_cards].each do |card| %>
+      <%=convert_image(card) %>
+    <% end %>
+  </div>
+  <div class='well' id='dealer_area'>
+    <strong>Dealer Cards are:</strong><br/>
+    <% session[:dealer_cards].each do |card| %>
+      <% if !@dealer_show_hands && card == session[:dealer_cards][0]%>
+        <img src='/images/cards/cover.jpg'>
+      <% else %>
+        <%=convert_image(card) %>
+      <% end %>
+    <% end %>
+  </div>
+  <strong><%=@message%></strong><br/>
+  You have <%= calculate(session[:player_cards])%><br/>
+  <% if @dealer_show_hands %>
+    Dealer has <%= calculate(session[:dealer_cards])%>
+  <% end %>
+</p>
+<p>
+<% if !@dealer_show_hands %>
+  <h4> Would you like to hit or stand? </h4>
+  <form id='hit_form' action='/player_hit' method='post'>
+    <input type="submit" class='btn btn-primary' value="hit" name="hit"/>
+  </form>
+  <form id='stay_form' action='/player_stay' method='post'>
+      <input type="submit" class='btn btn-success' value="stay" name="stay"/>
+  </form>
+<% else %>
+  <form action='/bet' method='get'>
+    <input type='submit' class='btn' value='Play Again' name='again'/>
+  </form>
+  <form action='/game_over' method='get'>
+    <input type='submit' class='btn' value='Game Over' name='again'/>
+  </form>
+<% end %>
+</div>

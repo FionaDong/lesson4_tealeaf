@@ -1,0 +1,14 @@
+<h4>Welcome to BlackJack!</h4><br/> 
+<h5>I am your dealer today, Jack Black. <br/>
+  May I know your name?</h5>
+<form action="/new_player" method="post">
+  <input type="text" name="player_name" autofocus/>
+  <br/>
+  <br/>
+  <input type="submit" value="Submit" class="btn"/>
+  <input type="submit" value="Cancel" class="btn"/>
+</form>
+
+  <% if @message %>
+    <strong class='alert alert-block'><%=@message%></strong>
+  <% end %>
